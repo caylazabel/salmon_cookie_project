@@ -7,10 +7,11 @@ var firstAndPike = {
   maxCustPerHour: 65,
   avgCookiesPerCust: 4.6,
   cookiesSoldPerHour: [],
+  totalDailyCookieSales: 0,
 
   randomCustPerHour: function(){
-    var min = Math.ceil(this.minCustPerHour);
-    var max = Math.floor(this.maxCustPerHour);
+    // var min = Math.ceil(this.minCustPerHour);
+    // var max = Math.floor(this.maxCustPerHour);
     return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) +this.minCustPerHour;
   },
   // var CustPerHour = firstAndPike.randomCustPerHour();
@@ -21,16 +22,23 @@ var firstAndPike = {
     for (var i = 0; i < hoursOpen.length; i++){
       var mathCalc = Math.round (this.randomCustPerHour() * this.avgCookiesPerCust);
       this.cookiesSoldPerHour.push(mathCalc);
+      this.totalDailyCookieSales = this.totalDailyCookieSales + mathCalc
     }
+  },
+  render: function(){
+    var firstAndPikeList = document.getElementById('firstAndPikeList');
+    for (var i = 0; i < hoursOpen.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = hoursOpen[i] + ': '+ firstAndPike.cookiesSoldPerHour[i] + ' cookies';
+      firstAndPikeList.appendChild(liEl);
+    }
+    var liEm = document.createElement('li');
+    liEm.textContent = 'Total: ' + firstAndPike.totalDailyCookieSales;
+    firstAndPikeList.appendChild(liEm)
   }
 }
 
 firstAndPike.calcCookiesSoldPerHour();
 console.log(firstAndPike);
 
-var firstAndPikeList = document.getElementById('firstAndPikeList');
-for (var i = 0; i < hoursOpen.length; i++) {
-  var liEl = document.createElement('li');
-  liEl.textContent = hoursOpen[i] + ': '+ firstAndPike.cookiesSoldPerHour[i] + 'cookies';
-  firstAndPikeList.appendChild(liEl);
-}
+firstAndPike.render();

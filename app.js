@@ -20,38 +20,40 @@ function Store (locationName, minCustPerHour, maxCustPerHour, avgCookiesPerCust)
   };
 
   this.calcCookiesSoldPerHour = function (){
-
+    this.calcRandomCustPerHour();
     for (var i = 0; i < hoursOpen.length; i++){
       this.cookiesSoldPerHour.push(Math.ceil(this.randomCustPerHour[i] * this.avgCookiesPerCust));
-
-      this.calcCookiesSoldPerHour += this.totalDailyCookieSales[i];
+      this.totalDailyCookieSales += this.cookiesSoldPerHour[i];
+      // console.log(this.totalDailyCookieSales);
     }
   };
 
+
   this.render = function (){
 
-
-    storeTable.appendChild(trEl)
     var trEl = document.createElement('tr');
-    console.log('hi');
+    storeTable.appendChild(trEl)
+
     var tdEl = document.createElement('td');
     tdEl.textContent = this.locationName;
     trEl.appendChild(tdEl);
-    for (var i = 0; i < hoursOpen.length; i++){
 
-      var tdEl = document.createElement('td');
+    for (var i = 0; i < hoursOpen.length; i++){
+      tdEl = document.createElement('td');
       tdEl.textContent = this.cookiesSoldPerHour[i];
       trEl.appendChild(tdEl);
     }
-    tdEl = document.createElement('td');
-    tdEl.textContent = this.totalDailyCookieSales;
-    trEl.appendChild(tdEl);
+// below i changed the variable tdEl to totalTdEl
+    var totalTdEl = document.createElement('td');
+    totalTdEl.textContent = this.totalDailyCookieSales;
+    trEl.appendChild(totalTdEl);
 
   }
 
-  allStores.push(this)
+  allStores.push(this);
   this.calcCookiesSoldPerHour();
   this.calcRandomCustPerHour();
+  this.render();
 }
 
 new Store('First and Pike', 23, 65, 4.6);

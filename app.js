@@ -62,7 +62,32 @@ new Store('SeaTac Airport', 3, 24, 1.2);
 new Store('Capitol Hill', 20, 38, 2.3);
 new Store('Seattle Center', 11, 38, 3.7)
 
-console.log(allStores);
+
+function headerRow (){
+var trEl = document.createElement('tr');
+var thEl = document.createElement('th')
+thEl.textContent = ('        ');
+trEl.appendChild(thEl);
+
+for (var i = 0; i < hoursOpen.length; i++){
+var thEl1 = document.createElement('th');
+thEl1.textContent = hoursOpen[i];
+trEl.appendChild(thEl1);
+}
+thEl = document.createElement('th')
+thEl.textContent = ('Totals');
+trEl.appendChild(thEl);
+
+storeTable.appendChild(trEl);
+}
+headerRow();
+
+
+
+
+
+
+// console.log(allStores);
 
 // var allShops = [shopOne, shopTwo, shopThree, shopFour, shopFive];
 //

@@ -78,6 +78,8 @@ headerRow();
 // this is exmple footer
 
 
+
+
 function footerRows () {
 
   var trEl = document.createElement('tr');

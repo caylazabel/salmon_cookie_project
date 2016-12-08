@@ -74,8 +74,48 @@ function headerRow (){
 }
 headerRow();
 
+
+// this is exmple footer
+
+
+function footerRows () {
+
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement('td');
+  tdEl.textContent = ('Store Totals');
+  trEl.appendChild(tdEl);
+
+
+  for(var i = 0; i < hoursOpen.length; i++){
+
+    var t = 0;
+
+    for (var j = 0; j < allStores.length; j++){
+      t += allStores[j].cookiesSoldPerHour[i];
+    }
+    var tdEl1 = document.createElement('td');
+    tdEl1.textContent = t;
+    trEl.appendChild(tdEl1)
+    console.log(t, 'here');
+  }
+  var endTotal = 0;
+  for(var i = 0; i < allStores.length; i++){
+    endTotal += allStores[i].totalDailyCookieSales;
+  }
+  tdEl = document.createElement('td');
+  tdEl.textContent = endTotal;
+  trEl.appendChild(tdEl);
+
+  storeTable.appendChild(trEl);
+
+}
+
+
+
 new Store('First and Pike', 23, 65, 4.6);
 new Store('Alki', 2, 16, 4.6);
 new Store('SeaTac Airport', 3, 24, 1.2);
 new Store('Capitol Hill', 20, 38, 2.3);
 new Store('Seattle Center', 11, 38, 3.7)
+
+footerRows();

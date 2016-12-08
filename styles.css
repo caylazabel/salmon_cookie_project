@@ -1,0 +1,14 @@
+* {
+  background-color: mistyRose;
+  font-size: 18px;
+  font-family: fantasy; papyrus;
+  border: 1px;
+  border-style: solid;
+  border-color: darkGray
+}
+
+h1 {
+  border: 0px;
+  font-size: 22px;
+
+}

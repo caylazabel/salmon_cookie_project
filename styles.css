@@ -1,14 +1,43 @@
-* {
-  background-color: mistyRose;
-  font-size: 18px;
-  font-family: fantasy; papyrus;
-  border: 1px;
-  border-style: solid;
-  border-color: darkGray
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Poppins', sans-serif;
+  background-color: MistyRose;
 }
 
-h1 {
-  border: 0px;
-  font-size: 22px;
+ul {
+  text-align: center;
+}
 
+li {
+  display: inline;
+  margin-right: 25px;
+  text-align: center;
+
+}
+
+a {
+  text-decoration: none;
+
+}
+
+.top{
+  text-align: center;
+  font-size: 20px;
+}
+
+.logo {
+  height: 85px;
+  width: 260px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -18px;
+
+}
+
+.family {
+  height:230px;
+  width:445px;
+  margin-top: 25px;
 }

@@ -139,10 +139,11 @@ function addOrModifyShop(event) {
   }
   new Store(name, min, max, avg);
 
-  name=null;
-  min=null;
-  max=null;
-  avg=null;
+
+  event.target.locationNameInput.value = null;
+  event.target.minCustPerHourInput.value = null;
+  event.target.maxCustPerHourInput.value = null;
+  event.target.avgCookiesPerCustInput.value = null;
 
   storeTable.innerHTML = '';
 

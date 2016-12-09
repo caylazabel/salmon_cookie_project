@@ -12,6 +12,7 @@ function Store (locationName, minCustPerHour, maxCustPerHour, avgCookiesPerCust)
   this.cookiesSoldPerHour = [];
   this.randomCustPerHour = [];
   this.totalDailyCookieSales = 0;
+  allStores.push(this);
 
   this.calcRandomCustPerHour = function (){
     for (var i = 0; i < hoursOpen.length; i++) {
@@ -27,7 +28,6 @@ function Store (locationName, minCustPerHour, maxCustPerHour, avgCookiesPerCust)
       // console.log(this.totalDailyCookieSales);
     }
   };
-
 
   this.render = function (){
 
@@ -49,10 +49,9 @@ function Store (locationName, minCustPerHour, maxCustPerHour, avgCookiesPerCust)
     trEl.appendChild(totalTdEl);
   }
 
-  allStores.push(this);
   this.calcCookiesSoldPerHour();
   this.calcRandomCustPerHour();
-  this.render();
+
 }
 
 function headerRow (){
@@ -72,45 +71,45 @@ function headerRow (){
 
   storeTable.appendChild(trEl);
 }
-headerRow();
-
-
-// this is exmple footer
-
-
-
+function storeRows(){
+  for (var i = 0; i < allStores.length; i++) {
+    allStores[i].render();
+  }
+}
 
 function footerRows () {
 
+
   var trEl = document.createElement('tr');
-  var tdEl = document.createElement('td');
+  var tdEl = document.createElement('th');
   tdEl.textContent = ('Store Totals');
   trEl.appendChild(tdEl);
 
-
+  var t = 0;
   for(var i = 0; i < hoursOpen.length; i++){
-
-    var t = 0;
-
     for (var j = 0; j < allStores.length; j++){
       t += allStores[j].cookiesSoldPerHour[i];
+
     }
-    var tdEl1 = document.createElement('td');
+    var tdEl1 = document.createElement('th');
     tdEl1.textContent = t;
     trEl.appendChild(tdEl1)
-    console.log(t, 'here');
+    // console.log(t, 'here');
   }
   var endTotal = 0;
   for(var i = 0; i < allStores.length; i++){
     endTotal += allStores[i].totalDailyCookieSales;
   }
-  tdEl = document.createElement('td');
+  tdEl = document.createElement('th');
   tdEl.textContent = endTotal;
   trEl.appendChild(tdEl);
 
   storeTable.appendChild(trEl);
-
 }
+
+
+
+
 
 
 
@@ -119,5 +118,39 @@ new Store('Alki', 2, 16, 4.6);
 new Store('SeaTac Airport', 3, 24, 1.2);
 new Store('Capitol Hill', 20, 38, 2.3);
 new Store('Seattle Center', 11, 38, 3.7)
+///////////////////////////////////////////////
 
+var submitForm = document.getElementById('addStoreForm')
+
+
+
+function addOrModifyShop(event) {
+  event.preventDefault();
+
+// local handle vars
+
+  var name = event.target.locationNameInput.value;
+  var min = event.target.minCustPerHourInput.value;
+  var max = event.target.maxCustPerHourInput.value;
+  var avg = event.target.avgCookiesPerCustInput.value;
+
+  if (!name || !min || !max || !avg) {
+    return alert ('Enter Data');
+  }
+  new Store(name, min, max, avg);
+
+  name=null;
+  min=null;
+  max=null;
+  avg=null;
+
+  storeTable.innerHTML = '';
+
+  headerRow();
+  storeRows();
+  footerRows();
+}
+submitForm.addEventListener('submit', addOrModifyShop);
+headerRow();
+storeRows();
 footerRows();

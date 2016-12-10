@@ -1,5 +1,7 @@
 
-
+* {
+  border: 2px solid red;
+}
 
 body {
   margin: 0px;
@@ -29,8 +31,35 @@ main{
   margin: 0 auto;
 }
 
-h2{
+.section_one h2{
   margin-bottom: -15px;
+
+}
+
+.section_one p{
+  margin-right: 60px;
+  margin-bottom: 30px;
+}
+
+.section_two{
+  width: 960px;
+  margin: 0 auto;
+  float: left;
+}
+
+.frosted_cookies{
+  margin-right: 30px;
+  margin-left: 20px;
+
+}
+.section_two p{
+  margin-right: 600px;
+  margin-top: -15px;
+
+}
+
+.section_two h2{
+  margin-top: -10px;
 }
 
 .top{
@@ -57,6 +86,7 @@ h2{
   margin-left: 20px;
 }
 
-p {
-  margin-right: 60px;
+.section_three {
+width: 
+
 }
